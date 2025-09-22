@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-// @ts-ignore
-import anime from 'animejs';
+import * as anime from 'animejs';
 
 interface AnimatedTextProps {
   text: string;

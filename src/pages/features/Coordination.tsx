@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-// @ts-ignore
-import anime from 'animejs';
+import * as anime from 'animejs';
 import { Button } from '@/components/ui/button';
 import FuturisticCard from '@/components/FuturisticCard';
 import AnimatedText from '@/components/AnimatedText';
