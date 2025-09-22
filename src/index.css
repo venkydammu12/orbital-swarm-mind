@@ -2,30 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Space-themed design system for AI Swarm Robotics project.
+/* Futuristic space-themed design system for AI Swarm Robotics project.
 Professional 3-color palette: Deep space blue, clean white, vibrant green accents.
+Enhanced with futuristic effects, glows, and particle animations.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Core space theme colors */
+    /* Core futuristic space theme colors */
     --background: 0 0% 100%;
     --foreground: 230 35% 7%;
 
-    /* Deep space primary - navy blue */
+    /* Deep space primary - enhanced navy blue */
     --primary: 230 35% 7%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 230 50% 15%;
+    --primary-glow: 230 60% 20%;
+    --primary-variant: 220 50% 12%;
 
-    /* Clean secondary - subtle grays */
+    /* Clean secondary - enhanced subtle grays */
     --secondary: 220 14% 96%;
     --secondary-foreground: 230 35% 7%;
 
-    /* Vibrant accent - space green */
+    /* Vibrant accent - enhanced space green */
     --accent: 142 76% 36%;
     --accent-foreground: 0 0% 98%;
     --accent-glow: 142 76% 50%;
+    --accent-bright: 142 90% 60%;
 
     /* Card and surface colors */
     --card: 0 0% 100%;
@@ -45,21 +48,28 @@ All colors MUST be HSL.
     --input: 220 13% 91%;
     --ring: 142 76% 36%;
 
-    /* Space-themed gradients */
-    --gradient-space: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    /* Futuristic gradients */
+    --gradient-space: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)), hsl(var(--primary-variant)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--accent-bright)) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+    --gradient-neon: linear-gradient(45deg, hsl(var(--accent)) 0%, hsl(var(--accent-bright)) 100%);
+    --gradient-cosmic: radial-gradient(ellipse at center, hsl(var(--primary-glow)) 0%, hsl(var(--primary)) 70%, transparent 100%);
 
-    /* Advanced shadows and glows */
+    /* Enhanced shadows and glows for futuristic feel */
     --shadow-space: 0 25px 50px -12px hsl(var(--primary) / 0.25);
-    --shadow-glow: 0 0 30px hsl(var(--accent) / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--accent) / 0.3), 0 0 60px hsl(var(--accent) / 0.2);
     --shadow-card: 0 4px 6px -1px hsl(var(--primary) / 0.1), 0 2px 4px -1px hsl(var(--primary) / 0.06);
+    --shadow-neon: 0 0 20px hsl(var(--accent) / 0.4), 0 0 40px hsl(var(--accent) / 0.2), inset 0 1px 0 hsl(var(--accent) / 0.1);
+    --shadow-futuristic: 0 8px 32px hsl(var(--primary) / 0.15), 0 4px 16px hsl(var(--accent) / 0.1);
 
-    /* Animation variables */
+    /* Enhanced animation variables for futuristic feel */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-bounce: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --animation-float: float 6s ease-in-out infinite;
     --animation-pulse-glow: pulse-glow 2s ease-in-out infinite alternate;
+    --animation-orbital: orbital-rotation 30s linear infinite;
+    --animation-particle: particle-drift 15s ease-in-out infinite;
 
     --radius: 0.5rem;
 
@@ -181,6 +191,35 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes orbital-rotation {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+
+  @keyframes particle-drift {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(0px) translateX(-10px); }
+    75% { transform: translateY(20px) translateX(5px); }
+  }
+
+  @keyframes neon-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 
+                  0 0 40px hsl(var(--accent) / 0.2);
+    }
+    50% { 
+      box-shadow: 0 0 30px hsl(var(--accent) / 0.6), 
+                  0 0 60px hsl(var(--accent) / 0.4),
+                  0 0 80px hsl(var(--accent) / 0.2);
+    }
+  }
+
+  @keyframes matrix-slide {
+    from { transform: translateY(-100%) scale(0.8); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
   /* Custom utility classes for space theme */
   .gradient-space {
     background: var(--gradient-space);
@@ -226,6 +265,22 @@ All colors MUST be HSL.
     animation: slide-in-right 0.6s ease-out;
   }
 
+  .animate-orbital {
+    animation: var(--animation-orbital);
+  }
+
+  .animate-particle-drift {
+    animation: var(--animation-particle);
+  }
+
+  .animate-neon-pulse {
+    animation: neon-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-matrix-slide {
+    animation: matrix-slide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
   /* Smooth transitions using design system */
   .transition-smooth {
     transition: var(--transition-smooth);
@@ -233,6 +288,10 @@ All colors MUST be HSL.
 
   .transition-spring {
     transition: var(--transition-spring);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
   }
 
   /* Glass effect for space cards */
@@ -249,14 +308,52 @@ All colors MUST be HSL.
                 0 0 60px hsl(var(--accent) / 0.1);
   }
 
-  /* Space particle background */
+  /* Enhanced space particle background */
   .space-bg {
     background-image: 
-      radial-gradient(2px 2px at 20px 30px, hsl(var(--accent) / 0.3), transparent),
-      radial-gradient(2px 2px at 40px 70px, hsl(var(--primary-glow) / 0.4), transparent),
-      radial-gradient(1px 1px at 90px 40px, hsl(var(--accent) / 0.2), transparent),
-      radial-gradient(1px 1px at 130px 80px, hsl(var(--accent) / 0.3), transparent);
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--accent) / 0.4), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--primary-glow) / 0.5), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--accent) / 0.3), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(var(--accent-bright) / 0.4), transparent),
+      radial-gradient(3px 3px at 160px 20px, hsl(var(--accent) / 0.2), transparent);
     background-repeat: repeat;
     background-size: 200px 100px;
+    animation: particle-drift 20s ease-in-out infinite;
+  }
+
+  /* Futuristic gradient utilities */
+  .gradient-neon {
+    background: var(--gradient-neon);
+  }
+
+  .gradient-cosmic {
+    background: var(--gradient-cosmic);
+  }
+
+  /* Enhanced shadow utilities */
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+
+  .shadow-futuristic {
+    box-shadow: var(--shadow-futuristic);
+  }
+
+  /* Futuristic border effects */
+  .border-neon {
+    border: 2px solid hsl(var(--accent) / 0.6);
+    box-shadow: inset 0 0 10px hsl(var(--accent) / 0.2);
+  }
+
+  /* Holographic effects */
+  .holographic {
+    background: linear-gradient(45deg, 
+      hsl(var(--accent) / 0.1) 0%, 
+      hsl(var(--primary-glow) / 0.1) 25%, 
+      hsl(var(--accent-bright) / 0.1) 50%, 
+      hsl(var(--accent) / 0.1) 75%, 
+      hsl(var(--primary-glow) / 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--accent) / 0.3);
   }
 }
