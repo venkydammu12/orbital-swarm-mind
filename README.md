@@ -1,73 +1,42 @@
-# Welcome to your Lovable project
+# AI Swarm Robotics for Space Junk Cleanup
 
-## Project info
+A professional, immersive website showcasing revolutionary AI swarm robotics technology for autonomous space debris cleanup.
 
-**URL**: https://lovable.dev/projects/693fa865-1aeb-460a-a52d-0bcbb3f9b38f
+## 🚀 Features
 
-## How can I edit this code?
+- **Landing Page**: Professional hero section with space-themed animations
+- **3D Visualization**: Interactive 3D model of AI swarm robots with clickable info bubbles
+- **Feature Loop**: Circular interactive display of all project features with detailed panels
+- **Technology Showcase**: Comprehensive overview of AI algorithms, sensors, and robotics
+- **About Section**: Team information, achievements, and mission impact
 
-There are several ways of editing your application.
+## 🎨 Design System
 
-**Use Lovable**
+- **Clean 3-color palette**: Deep space blue, clean white, vibrant green accents
+- **Space-themed animations**: Floating elements, pulse glows, smooth transitions
+- **Professional layout**: Inspired by modern SaaS websites with space aesthetics
+- **Responsive design**: Works seamlessly on desktop, tablet, and mobile
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/693fa865-1aeb-460a-a52d-0bcbb3f9b38f) and start prompting.
+## 🛠️ Technology Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **3D Graphics**: React Three Fiber, Three.js, React Three Drei
+- **Animations**: Framer Motion for smooth interactions
+- **Routing**: React Router for dynamic page navigation
+- **UI Components**: Shadcn/ui with custom space-themed variants
 
-**Use your preferred IDE**
+## 📱 Pages
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. **Landing** (`/`) - Hero section with project overview
+2. **3D Visualization** (`/visualization`) - Interactive 3D robot swarm model
+3. **Features** (`/features`) - Interactive circular feature loop
+4. **Technology** (`/technology`) - Detailed technical specifications
+5. **About** (`/about`) - Team, mission, and impact information
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🎯 Key Innovations
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/693fa865-1aeb-460a-a52d-0bcbb3f9b38f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- **Interactive 3D Models**: Rotatable, zoomable space robotics visualization
+- **Dynamic Feature Loop**: Circular interface with expandable detail panels
+- **Space Particle Effects**: Animated background with floating elements
+- **Professional SEO**: Optimized meta tags and semantic HTML structure
+- **Smooth Animations**: Framer Motion powered transitions and effects
