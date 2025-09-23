@@ -8,44 +8,55 @@ const Navigation = () => {
   
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/visualization', label: '3D Model' },
+    { path: '/problem', label: 'Problem' },
+    { path: '/swarm', label: 'Swarm' },
     { path: '/features', label: 'Features' },
-    { path: '/technology', label: 'Technology' },
-    { path: '/about', label: 'About' }
+    { path: '/demo', label: 'Demo' },
+    { path: '/sdg-mdg', label: 'Impact' }
   ];
 
   return (
     <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-card-border/20"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-white/10"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-full gradient-hero animate-pulse-glow" />
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              AI Swarm Robotics
+            <div className="w-8 h-8 rounded-full bg-accent animate-pulse" />
+            <span className="text-xl font-bold text-white tracking-tight">
+              AI Swarm
             </span>
           </Link>
           
-          <div className="hidden md:flex items-center space-x-1">
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <Button 
-                  variant={location.pathname === item.path ? "space" : "ghost"}
-                  size="sm"
-                  className="transition-smooth"
-                >
-                  {item.label}
-                </Button>
+              <Link 
+                key={item.path} 
+                to={item.path}
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  location.pathname === item.path 
+                    ? 'text-accent' 
+                    : 'text-white hover:text-accent'
+                }`}
+              >
+                {item.label}
               </Link>
             ))}
           </div>
 
-          <Button variant="hero" size="sm" className="animate-pulse-glow">
-            Explore Project
-          </Button>
+          {/* CTA Button */}
+          <Link to="/features">
+            <Button 
+              size="sm" 
+              className="bg-accent text-black hover:bg-accent/90 font-medium px-6"
+            >
+              Explore Project →
+            </Button>
+          </Link>
         </div>
       </div>
     </motion.nav>

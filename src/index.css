@@ -2,33 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic space-themed design system for AI Swarm Robotics project.
-Professional 3-color palette: Deep space blue, clean white, vibrant green accents.
-Enhanced with futuristic effects, glows, and particle animations.
-All colors MUST be HSL.
+/* Premium Black-first Minimalist Design System for AI Swarm Robotics
+Deep space black background, white primary text, electric cyan accent
+Inspired by Fey-style premium design with cinematic space aesthetics
+All colors MUST be HSL for proper theming
 */
 
 @layer base {
   :root {
-    /* Core futuristic space theme colors */
+    /* Black-first premium theme - Light mode (for reference) */
     --background: 0 0% 100%;
-    --foreground: 230 35% 7%;
+    --foreground: 0 0% 0%;
 
-    /* Deep space primary - enhanced navy blue */
-    --primary: 230 35% 7%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 230 60% 20%;
-    --primary-variant: 220 50% 12%;
+    /* Deep space black primary */
+    --primary: 220 100% 2%;  /* Deep space black #000814 */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 220 80% 8%;
+    --primary-variant: 220 60% 4%;
 
-    /* Clean secondary - enhanced subtle grays */
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 230 35% 7%;
+    /* Clean secondary - subtle dark grays */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Vibrant accent - enhanced space green */
-    --accent: 142 76% 36%;
-    --accent-foreground: 0 0% 98%;
-    --accent-glow: 142 76% 50%;
-    --accent-bright: 142 90% 60%;
+    /* Electric cyan accent - vivid and minimal use */
+    --accent: 184 100% 50%;  /* Electric cyan #00E6FF */
+    --accent-foreground: 220 100% 2%;
+    --accent-glow: 184 100% 60%;
+    --accent-bright: 184 100% 70%;
 
     /* Card and surface colors */
     --card: 0 0% 100%;
@@ -90,28 +90,28 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Dark space theme for deep space immersion */
+  /* PRIMARY THEME: Black-first space immersion (this is the main theme) */
   .dark {
-    --background: 230 35% 7%;
-    --foreground: 0 0% 98%;
+    --background: 220 100% 2%;  /* Deep space black */
+    --foreground: 0 0% 100%;    /* Pure white text */
 
-    --card: 230 30% 9%;
-    --card-foreground: 0 0% 98%;
-    --card-border: 230 20% 15%;
+    --card: 220 80% 4%;         /* Slightly lighter black for cards */
+    --card-foreground: 0 0% 100%;
+    --card-border: 220 50% 10%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 230 35% 7%;
-    --primary-glow: 142 76% 50%;
+    --primary: 0 0% 100%;       /* White as primary in dark theme */
+    --primary-foreground: 220 100% 2%;
+    --primary-glow: 184 100% 50%;
 
-    --secondary: 230 20% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 50% 8%;    /* Dark secondary */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 230 20% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 40% 12%;       /* Muted backgrounds */
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 142 76% 50%;
-    --accent-foreground: 230 35% 7%;
-    --accent-glow: 142 76% 60%;
+    --accent: 184 100% 50%;     /* Electric cyan */
+    --accent-foreground: 220 100% 2%;
+    --accent-glow: 184 100% 60%;
 
     --popover: 230 30% 9%;
     --popover-foreground: 0 0% 98%;
@@ -147,7 +147,9 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground dark;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv05', 'cv11';
   }
 }
 
