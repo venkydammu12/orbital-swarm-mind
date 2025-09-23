@@ -1,37 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import anime from 'animejs';
 import { Button } from '@/components/ui/button';
 import FuturisticCard from '@/components/FuturisticCard';
 import AnimatedText from '@/components/AnimatedText';
 import { Eye, Package, Users, Monitor, Cpu, ArrowRight } from 'lucide-react';
 
 const Features = () => {
-  const loopRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (loopRef.current) {
-      // Animate the feature loop
-      anime({
-        targets: '.feature-orbit',
-        rotate: '360deg',
-        duration: 30000,
-        easing: 'linear',
-        loop: true
-      });
-
-      anime({
-        targets: '.feature-card',
-        scale: [0.9, 1.1, 0.9],
-        duration: 4000,
-        easing: 'easeInOutSine',
-        loop: true,
-        delay: anime.stagger(800)
-      });
-    }
-  }, []);
-
   const features = [
     {
       id: 'detection',
@@ -96,7 +71,7 @@ const Features = () => {
         </motion.div>
 
         {/* Central Feature Loop */}
-        <div ref={loopRef} className="relative mb-20">
+        <div className="relative mb-20">
           <div className="flex items-center justify-center min-h-[600px]">
             {/* Central Hub */}
             <FuturisticCard 
@@ -104,16 +79,24 @@ const Features = () => {
               glowEffect={true}
             >
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-neon rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse-glow">
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-neon rounded-full mx-auto mb-4 flex items-center justify-center"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
                   <Cpu className="h-8 w-8 text-white" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-bold text-accent">AI Core</h3>
                 <p className="text-sm text-muted-foreground">Central Control</p>
               </div>
             </FuturisticCard>
 
             {/* Orbital Features */}
-            <div className="feature-orbit absolute inset-0 flex items-center justify-center">
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+            >
               {features.map((feature, index) => {
                 const angle = (index / features.length) * 360;
                 const radius = 250;
@@ -123,11 +106,19 @@ const Features = () => {
                 return (
                   <motion.div
                     key={feature.id}
-                    className="feature-card absolute"
+                    className="absolute"
                     style={{
                       transform: `translate(${x}px, ${y}px)`
                     }}
                     whileHover={{ scale: 1.2, zIndex: 20 }}
+                    animate={{ 
+                      scale: [0.9, 1.1, 0.9],
+                      rotate: -360 
+                    }}
+                    transition={{ 
+                      scale: { duration: 4, ease: "easeInOut", repeat: Infinity, delay: index * 0.8 },
+                      rotate: { duration: 30, ease: "linear", repeat: Infinity }
+                    }}
                   >
                     <Link to={feature.route}>
                       <FuturisticCard 
@@ -148,7 +139,7 @@ const Features = () => {
                   </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
 

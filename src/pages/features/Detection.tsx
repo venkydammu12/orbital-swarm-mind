@@ -1,37 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import anime from 'animejs';
 import { Button } from '@/components/ui/button';
 import FuturisticCard from '@/components/FuturisticCard';
 import AnimatedText from '@/components/AnimatedText';
 import { ArrowLeft, Eye, Radar, Cpu, Target } from 'lucide-react';
 
 const Detection = () => {
-  const diagramRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (diagramRef.current) {
-      // Animate detection visualization
-      anime({
-        targets: '.detection-wave',
-        scale: [0, 1.5],
-        opacity: [0.8, 0],
-        duration: 2000,
-        easing: 'easeOutExpo',
-        loop: true,
-        delay: anime.stagger(500)
-      });
-
-      anime({
-        targets: '.debris-target',
-        rotate: '360deg',
-        duration: 8000,
-        easing: 'linear',
-        loop: true
-      });
-    }
-  }, []);
 
   return (
     <div className="min-h-screen pt-20 space-bg">
@@ -80,12 +55,24 @@ const Detection = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
                   {[...Array(3)].map((_, i) => (
-                    <div
+                    <motion.div
                       key={i}
-                      className={`detection-wave absolute inset-0 border-2 border-accent rounded-full w-32 h-32`}
+                      className="detection-wave absolute inset-0 border-2 border-accent rounded-full w-32 h-32"
+                      animate={{ scale: [0, 1.5], opacity: [0.8, 0] }}
+                      transition={{ 
+                        duration: 2, 
+                        ease: "easeOut", 
+                        repeat: Infinity,
+                        delay: i * 0.5
+                      }}
                     />
                   ))}
-                  <Target className="h-8 w-8 text-accent debris-target" />
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+                  >
+                    <Target className="h-8 w-8 text-accent" />
+                  </motion.div>
                 </div>
               </div>
             </div>

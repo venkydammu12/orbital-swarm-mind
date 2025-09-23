@@ -1,39 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import anime from 'animejs';
 import { Button } from '@/components/ui/button';
 import FuturisticCard from '@/components/FuturisticCard';
 import AnimatedText from '@/components/AnimatedText';
 import { ArrowLeft, Package, Recycle, Shield, Zap } from 'lucide-react';
 
 const Storage = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      // Animate storage mechanism
-      anime({
-        targets: '.storage-unit',
-        scale: [0.8, 1, 0.8],
-        duration: 4000,
-        easing: 'easeInOutSine',
-        loop: true,
-        delay: anime.stagger(200)
-      });
-
-      anime({
-        targets: '.debris-particle',
-        translateX: [-50, 0, 50],
-        translateY: [20, -10, 20],
-        opacity: [0, 1, 0],
-        duration: 3000,
-        easing: 'easeInOutQuad',
-        loop: true,
-        delay: anime.stagger(400)
-      });
-    }
-  }, []);
 
   return (
     <div className="min-h-screen pt-20 space-bg">
@@ -78,16 +51,31 @@ const Storage = () => {
                 <li>• Safe handling of hazardous materials</li>
               </ul>
             </div>
-            <div ref={containerRef} className="relative h-64 rounded-lg gradient-cosmic flex items-center justify-center">
+            <div className="relative h-64 rounded-lg gradient-cosmic flex items-center justify-center">
               <div className="relative">
-                <div className="storage-unit w-16 h-16 bg-accent/20 rounded-lg border-2 border-accent" />
+                <motion.div 
+                  className="storage-unit w-16 h-16 bg-accent/20 rounded-lg border-2 border-accent"
+                  animate={{ scale: [0.8, 1, 0.8] }}
+                  transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+                />
                 {[...Array(5)].map((_, i) => (
-                  <div
+                  <motion.div
                     key={i}
-                    className={`debris-particle absolute w-2 h-2 bg-accent rounded-full`}
+                    className="debris-particle absolute w-2 h-2 bg-accent rounded-full"
                     style={{
                       top: `${Math.random() * 100}px`,
                       left: `${Math.random() * 100}px`
+                    }}
+                    animate={{ 
+                      x: [-50, 0, 50],
+                      y: [20, -10, 20],
+                      opacity: [0, 1, 0]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      ease: "easeInOut", 
+                      repeat: Infinity,
+                      delay: i * 0.4
                     }}
                   />
                 ))}
