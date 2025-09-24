@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImage from '../assets/ChatGPT Image Sep 23, 2025, 10_50_50 AM.png';
+import logoImage from '../assets/ai-swarm-logo.png';
 
 const Navigation = () => {
   const location = useLocation();
