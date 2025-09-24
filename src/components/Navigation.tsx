@@ -27,8 +27,10 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div 
-              className="w-8 h-8 bg-accent animate-pulse cursor-pointer hover:scale-110 transition-transform"
+            <img
+              src={logoImage}
+              alt="AI Swarm Logo"
+              className="w-8 h-8 object-contain cursor-pointer hover:scale-110 transition-transform animate-pulse"
               onClick={() => setShowLogoModal(true)}
             />
             <Link to="/" className="text-xl font-bold text-white tracking-tight">
