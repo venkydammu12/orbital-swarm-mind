@@ -11,7 +11,7 @@ const Navigation = () => {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/problem', label: 'Problem' },
-    { path: '/swarm', label: 'Swarm' },
+    { path: '/swarm', label: 'Solution' },
     { path: '/features', label: 'Loop' },
     { path: '/demo', label: 'Demo' },
     { path: '/sdg-mdg', label: 'Impact' }
