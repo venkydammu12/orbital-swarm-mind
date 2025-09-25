@@ -12,8 +12,8 @@ const Navigation = () => {
     { path: '/', label: 'Home' },
     { path: '/problem', label: 'Problem' },
     { path: '/swarm', label: 'Solution' },
-    { path: '/features', label: 'Demo' },
-    { path: '/demo', label: 'Timeline' },
+    { path: '/dashboard', label: 'Monitor' },
+    { path: '/ideas', label: 'Ideas' },
     { path: '/sdg-mdg', label: 'Impact' }
   ];
 

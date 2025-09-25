@@ -53,16 +53,23 @@ const Landing = () => {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link to="/visualization">
-                <Button variant="hero" size="lg" className="group animate-pulse-glow">
+              <Link to="/swarm">
+                <Button 
+                  size="lg" 
+                  className="bg-accent text-black hover:bg-accent/90 font-medium px-8 py-4 text-lg group"
+                >
                   Explore Project
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
               
-              <Link to="/features">
-                <Button variant="space" size="lg">
-                  View Features
+              <Link to="/dashboard">
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  className="border-accent/50 text-accent hover:bg-accent/10 px-8 py-4 text-lg"
+                >
+                  Mission Control
                 </Button>
               </Link>
             </motion.div>
@@ -148,10 +155,13 @@ const Landing = () => {
               Dive deep into our 3D visualization and interactive features to see how 
               AI swarm robotics will revolutionize space cleanup.
             </p>
-            <Link to="/visualization">
-              <Button variant="accent" size="lg" className="animate-pulse-glow">
+            <Link to="/dashboard">
+              <Button 
+                size="lg" 
+                className="bg-accent text-black hover:bg-accent/90 font-medium px-8 py-4 text-lg group"
+              >
                 Start Interactive Tour
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </motion.div>

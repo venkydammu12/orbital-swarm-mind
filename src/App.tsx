@@ -15,6 +15,8 @@ import Features from "./pages/Features";
 import Demo from "./pages/Demo";
 import SdgMdg from "./pages/SdgMdg";
 import Ideas from "./pages/Ideas";
+import Dashboard from "./pages/Dashboard";
+import IdeasHub from "./pages/IdeasHub";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -52,8 +54,10 @@ const App = () => (
             <Route path="/features/capture" element={<Capture />} />
             <Route path="/features/recycling" element={<Recycling />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/sdg-mdg" element={<SdgMdg />} />
             <Route path="/ideas" element={<Ideas />} />
+            <Route path="/ideas-hub" element={<IdeasHub />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
