@@ -13,7 +13,7 @@ const Navigation = () => {
     { path: '/problem', label: 'Problem' },
     { path: '/swarm', label: 'Solution' },
     { path: '/features', label: 'Demo' },
-    { path: '/demo', label: 'Demo' },
+    { path: '/demo', label: 'Timeline' },
     { path: '/sdg-mdg', label: 'Impact' }
   ];
 
