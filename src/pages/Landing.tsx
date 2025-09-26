@@ -3,19 +3,18 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Shield, Target } from 'lucide-react';
-import heroImage from '@/assets/hero-space-swarm.jpg';
+import StarfieldBackground from '@/components/StarfieldBackground';
+import SolutionLoop from '@/components/SolutionLoop';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen space-bg">
+    <div className="min-h-screen">
+      {/* Animated Starfield Background */}
+      <StarfieldBackground />
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
-        <div className="absolute inset-0 gradient-space opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -24,17 +23,17 @@ const Landing = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary-glow bg-clip-text text-transparent animate-fade-in-up">
-              AI Swarm Robotics
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent animate-fade-in-up">
+              AI SWARM ROBOTICS
             </h1>
             
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-2xl md:text-4xl font-light mb-8 text-muted-foreground"
+              className="text-2xl md:text-4xl font-light mb-8 text-accent"
             >
-              for Space Junk Cleanup
+              Autonomous Orbital Debris Cleanup
             </motion.h2>
             
             <motion.p
@@ -53,23 +52,13 @@ const Landing = () => {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link to="/swarm">
-                <Button 
-                  size="lg" 
-                  className="bg-accent text-black hover:bg-accent/90 font-medium px-8 py-4 text-lg group"
-                >
-                  Explore Project
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              
               <Link to="/dashboard">
                 <Button 
-                  variant="outline"
-                  size="lg"
-                  className="border-accent/50 text-accent hover:bg-accent/10 px-8 py-4 text-lg"
+                  size="lg" 
+                  className="bg-accent text-black hover:bg-accent/90 font-medium px-12 py-6 text-xl group shadow-glow animate-neon-pulse"
                 >
-                  Mission Control
+                  [ Launch Mission Control ]
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </motion.div>
@@ -88,6 +77,13 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Solution Loop Section */}
+      <section className="py-20 bg-gradient-to-b from-background via-secondary/5 to-background">
+        <div className="container mx-auto px-4">
+          <SolutionLoop />
+        </div>
+      </section>
+
       {/* Key Features Preview */}
       <section className="py-20 bg-gradient-to-b from-background to-secondary/10">
         <div className="container mx-auto px-4">
@@ -96,9 +92,9 @@ const Landing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-white to-accent bg-clip-text text-transparent"
           >
-            Revolutionary Space Technology
+            Mission-Critical Technology
           </motion.h3>
           
           <div className="grid md:grid-cols-3 gap-8">
