@@ -56,7 +56,7 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <Link to="/features">
+          <Link to="/swarm">
             <Button 
               size="sm" 
               className="bg-accent text-black hover:bg-accent/90 font-medium px-6"
