@@ -8,6 +8,7 @@ import SpaceBackground from "./components/SpaceBackground";
 
 // Main Pages
 import Landing from "./pages/Landing";
+import MissionControl from "./pages/MissionControl";
 import Problem from "./pages/Problem";
 import Swarm from "./pages/Swarm";
 import Mothership from "./pages/Mothership";
@@ -42,6 +43,7 @@ const App = () => (
           <Navigation />
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/mission-control" element={<MissionControl />} />
             <Route path="/problem" element={<Problem />} />
             <Route path="/swarm" element={<Swarm />} />
             <Route path="/mothership" element={<Mothership />} />

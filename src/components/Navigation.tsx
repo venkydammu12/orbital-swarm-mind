@@ -10,9 +10,9 @@ const Navigation = () => {
   
   const navItems = [
     { path: '/', label: 'Home' },
+    { path: '/mission-control', label: 'Mission Control' },
     { path: '/problem', label: 'Problem' },
     { path: '/swarm', label: 'Solution' },
-    { path: '/dashboard', label: 'Monitor' },
     { path: '/ideas', label: 'Ideas' },
     { path: '/sdg-mdg', label: 'Impact' }
   ];
@@ -56,12 +56,12 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <Link to="/swarm">
+          <Link to="/mission-control">
             <Button 
               size="sm" 
-              className="bg-accent text-black hover:bg-accent/90 font-medium px-6"
+              className="bg-cyan-400 text-black hover:bg-cyan-500 font-bold px-6"
             >
-              Explore Project →
+              Launch Control →
             </Button>
           </Link>
         </div>
