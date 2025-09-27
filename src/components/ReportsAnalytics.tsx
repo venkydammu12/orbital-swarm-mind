@@ -4,16 +4,7 @@ import {
   LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
-import { 
-  Download, 
-  TrendingUp, 
-  Activity, 
-  Target, 
-  Battery,
-  FileText,
-  BarChart3,
-  PieChart as PieChartIcon
-} from 'lucide-react';
+import { Download, TrendingUp, Activity, Target, Battery, FileText, ChartBar as BarChart3, ChartPie as PieChartIcon } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Activity, 
-  Map, 
-  BarChart3, 
-  Settings,
-  Satellite,
-  Target,
-  Eye,
-  Route
-} from 'lucide-react';
+import { Activity, Map, ChartBar as BarChart3, Settings, Satellite, Target, Eye, Route } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MissionControlDashboard from '@/components/MissionControlDashboard';
 import SolutionLoopInteractive from '@/components/SolutionLoopInteractive';

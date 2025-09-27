@@ -70,6 +70,7 @@ All colors MUST be HSL for proper theming
     --animation-pulse-glow: pulse-glow 2s ease-in-out infinite alternate;
     --animation-orbital: orbital-rotation 30s linear infinite;
     --animation-particle: particle-drift 15s ease-in-out infinite;
+    --animation-scan: radar-scan 3s ease-in-out infinite;
 
     --radius: 0.5rem;
 
@@ -205,6 +206,12 @@ All colors MUST be HSL for proper theming
     75% { transform: translateY(20px) translateX(5px); }
   }
 
+  @keyframes radar-scan {
+    0% { transform: rotate(0deg); opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { transform: rotate(360deg); opacity: 1; }
+  }
+
   @keyframes neon-pulse {
     0%, 100% { 
       box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 
@@ -283,6 +290,10 @@ All colors MUST be HSL for proper theming
     animation: matrix-slide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
+  .animate-radar-scan {
+    animation: radar-scan 3s ease-in-out infinite;
+  }
+
   /* Smooth transitions using design system */
   .transition-smooth {
     transition: var(--transition-smooth);
@@ -357,5 +368,22 @@ All colors MUST be HSL for proper theming
       hsl(var(--primary-glow) / 0.1) 100%);
     backdrop-filter: blur(10px);
     border: 1px solid hsl(var(--accent) / 0.3);
+  }
+
+  /* Mission Control specific styles */
+  .mission-control-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr 320px;
+    height: calc(100vh - 4rem);
+  }
+
+  .hud-overlay {
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 230, 255, 0.1) 50%, transparent 70%);
+    animation: hud-sweep 4s ease-in-out infinite;
+  }
+
+  @keyframes hud-sweep {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
   }
 }

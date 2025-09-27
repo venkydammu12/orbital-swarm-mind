@@ -2,22 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Line, Html } from '@react-three/drei';
-import { 
-  Satellite, 
-  MapPin, 
-  Battery, 
-  Signal, 
-  Eye, 
-  Target, 
-  AlertTriangle,
-  Settings,
-  Play,
-  Pause,
-  RotateCcw,
-  Zap,
-  Clock,
-  Activity
-} from 'lucide-react';
+import { Satellite, MapPin, Battery, Signal, Eye, Target, TriangleAlert as AlertTriangle, Settings, Play, Pause, RotateCcw, Zap, Clock, Activity } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
