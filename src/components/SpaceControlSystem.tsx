@@ -25,6 +25,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import * as THREE from 'three';
 import { LineChart, Line as RechartsLine, XAxis, YAxis, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import anime from 'animejs';
 
 // Types
 interface DebrisObject {
@@ -36,6 +37,9 @@ interface DebrisObject {
   weight: number;
   size: number;
   collected: boolean;
+  orbitAngle: number;
+  orbitRadius: number;
+  orbitSpeed: number;
 }
 
 interface Robot {
@@ -52,6 +56,11 @@ interface Robot {
     lidar: boolean;
     magnetic: boolean;
     vacuum: boolean;
+  };
+  gpsCoords: {
+    lat: number;
+    lng: number;
+    alt: number;
   };
 }
 
@@ -100,9 +109,16 @@ const DebrisField = ({ debris, onDebrisClick }: {
   const groupRef = useRef<THREE.Group>(null);
   
   useFrame((state, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05;
-    }
+    // Update orbital positions for each debris
+    debris.forEach((piece, index) => {
+      if (!piece.collected) {
+        piece.orbitAngle += delta * piece.orbitSpeed;
+        const x = Math.cos(piece.orbitAngle) * piece.orbitRadius;
+        const z = Math.sin(piece.orbitAngle) * piece.orbitRadius;
+        const y = Math.sin(piece.orbitAngle * 0.5) * 0.5; // Slight vertical oscillation
+        piece.position = [x, y, z];
+      }
+    });
   });
 
   const getDebrisColor = (type: string) => {
@@ -172,6 +188,12 @@ const SpaceRobot = ({ robot, cameraStream, missionState }: {
         const direction = targetPos.sub(currentPos).normalize();
         
         robotRef.current.position.lerp(targetPos, delta * 0.5);
+        
+        // Update GPS coordinates based on 3D position
+        const pos = robotRef.current.position;
+        robot.gpsCoords.lat = (pos.y / 2) * 90; // Convert Y to latitude
+        robot.gpsCoords.lng = (pos.x / 2) * 180; // Convert X to longitude
+        robot.gpsCoords.alt = 400 + (pos.z / 2) * 100; // Convert Z to altitude
       }
       
       // Scanning animation
@@ -260,6 +282,7 @@ const SpaceRobot = ({ robot, cameraStream, missionState }: {
           <div className="text-cyan-400 font-bold text-sm">SWARM-01</div>
           <div className="text-xs">Task: {robot.currentTask}</div>
           <div className="text-xs">Battery: {robot.battery}%</div>
+          <div className="text-xs">GPS: {robot.gpsCoords.lat.toFixed(4)}°, {robot.gpsCoords.lng.toFixed(4)}°</div>
         </div>
       </Html>
     </group>
@@ -416,6 +439,11 @@ const SpaceControlSystem = () => {
       lidar: true,
       magnetic: true,
       vacuum: true
+    },
+    gpsCoords: {
+      lat: 28.6139, // Delhi coordinates
+      lng: 77.2090,
+      alt: 408
     }
   });
   
@@ -469,27 +497,31 @@ const SpaceControlSystem = () => {
 
   const { isListening, startListening, stopListening } = useVoiceRecognition(handleVoiceCommand);
 
-  // Initialize debris field
+  // Initialize debris field with orbital mechanics
   useEffect(() => {
     const debrisTypes = ['metallic', 'plastic', 'non-metallic'] as const;
-    const initialDebris: DebrisObject[] = Array.from({ length: 15 }, (_, i) => {
-      const angle = (i / 15) * Math.PI * 2;
-      const radius = 4 + Math.random() * 2;
+    const initialDebris: DebrisObject[] = Array.from({ length: 50 }, (_, i) => {
       const type = debrisTypes[Math.floor(Math.random() * debrisTypes.length)];
+      const orbitRadius = 3 + Math.random() * 2;
+      const orbitAngle = (i / 50) * Math.PI * 2;
+      const orbitSpeed = 0.1 + Math.random() * 0.3;
       
       return {
         id: `DBR-${String(i + 1).padStart(3, '0')}`,
         name: `${type.charAt(0).toUpperCase() + type.slice(1)} Debris`,
         type,
         position: [
-          Math.cos(angle) * radius,
-          (Math.random() - 0.5) * 2,
-          Math.sin(angle) * radius
+          Math.cos(orbitAngle) * orbitRadius,
+          (Math.random() - 0.5) * 1,
+          Math.sin(orbitAngle) * orbitRadius
         ] as [number, number, number],
         speed: 5 + Math.random() * 10,
         weight: 0.5 + Math.random() * 5,
         size: 0.1 + Math.random() * 0.2,
-        collected: false
+        collected: false,
+        orbitAngle,
+        orbitRadius,
+        orbitSpeed
       };
     });
     
@@ -500,6 +532,14 @@ const SpaceControlSystem = () => {
   const startMission = () => {
     setMissionState(prev => ({ ...prev, isActive: true, phase: 'scanning' }));
     setRobot(prev => ({ ...prev, currentTask: 'Scanning for debris' }));
+    
+    // Animate mission start
+    anime({
+      targets: '.mission-indicator',
+      backgroundColor: ['#374151', '#10B981'],
+      duration: 1000,
+      easing: 'easeOutQuart'
+    });
   };
 
   const pauseMission = () => {
@@ -520,6 +560,15 @@ const SpaceControlSystem = () => {
   const scanForDebris = () => {
     setMissionState(prev => ({ ...prev, phase: 'scanning' }));
     setRobot(prev => ({ ...prev, currentTask: 'Scanning for debris' }));
+    
+    // Animate scanning effect
+    anime({
+      targets: '.radar-sweep',
+      rotate: '360deg',
+      duration: 2000,
+      easing: 'linear',
+      loop: true
+    });
   };
 
   // Mission Loop
@@ -656,6 +705,44 @@ const SpaceControlSystem = () => {
     setRobot(prev => ({ ...prev, currentTask: 'Target acquired' }));
     speak(`Target acquired: ${debrisObj.name}`);
     setRobotMessage(`Target acquired: ${debrisObj.name}`);
+    
+    // Animate target selection
+    anime({
+      targets: '.target-indicator',
+      scale: [1, 1.5, 1],
+      opacity: [0.5, 1, 0.5],
+      duration: 1000,
+      easing: 'easeInOutSine'
+    });
+  };
+
+  const spawnDebris = () => {
+    const types = ['metallic', 'plastic', 'non-metallic'] as const;
+    const type = types[Math.floor(Math.random() * types.length)];
+    const orbitRadius = 3 + Math.random() * 2;
+    const orbitAngle = Math.random() * Math.PI * 2;
+    
+    const newDebris: DebrisObject = {
+      id: `DBR-${Date.now()}`,
+      name: `${type.charAt(0).toUpperCase() + type.slice(1)} Fragment`,
+      type,
+      position: [
+        Math.cos(orbitAngle) * orbitRadius,
+        (Math.random() - 0.5) * 1,
+        Math.sin(orbitAngle) * orbitRadius
+      ] as [number, number, number],
+      speed: 5 + Math.random() * 10,
+      weight: 0.5 + Math.random() * 5,
+      size: 0.1 + Math.random() * 0.2,
+      collected: false,
+      orbitAngle,
+      orbitRadius,
+      orbitSpeed: 0.1 + Math.random() * 0.3
+    };
+    
+    setDebris(prev => [...prev, newDebris]);
+    speak(`New debris detected: ${newDebris.name}`);
+    setRobotMessage(`New debris detected: ${newDebris.name}`);
   };
 
   return (
@@ -664,8 +751,8 @@ const SpaceControlSystem = () => {
       <div className="absolute top-4 left-4 right-4 z-20 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <h1 className="text-2xl font-bold text-cyan-400">ORBITAL CONTROL SYSTEM</h1>
-          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-            LIVE MISSION
+          <Badge className={`mission-indicator ${missionState.isActive ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-gray-500/20 text-gray-400 border-gray-500/30'}`}>
+            {missionState.isActive ? 'LIVE MISSION' : 'STANDBY'}
           </Badge>
         </div>
         
@@ -695,6 +782,14 @@ const SpaceControlSystem = () => {
           >
             {missionState.isActive ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             {missionState.isActive ? 'Pause' : 'Start'} Mission
+          </Button>
+          
+          {/* Spawn Debris */}
+          <Button
+            onClick={spawnDebris}
+            className="bg-red-500 hover:bg-red-600 text-white"
+          >
+            [ Spawn Debris (Demo) ]
           </Button>
         </div>
       </div>
@@ -799,18 +894,40 @@ const SpaceControlSystem = () => {
                   </div>
                   <div className="text-sm text-white">{robot.currentTask}</div>
                 </div>
+                
+                <div className="bg-gray-800/50 p-3 rounded border border-gray-600">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="h-4 w-4 text-cyan-400" />
+                    <span className="text-xs text-gray-400">GPS COORDINATES</span>
+                  </div>
+                  <div className="text-xs font-mono text-cyan-400">
+                    LAT: {robot.gpsCoords.lat.toFixed(4)}°<br/>
+                    LNG: {robot.gpsCoords.lng.toFixed(4)}°<br/>
+                    ALT: {robot.gpsCoords.alt.toFixed(0)} km
+                  </div>
+                </div>
               </div>
 
               {/* Sensor Status */}
               <div className="mb-6">
                 <h4 className="text-cyan-400 font-bold text-sm mb-3">SENSOR STATUS</h4>
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  {Object.entries(robot.sensors).map(([sensor, active]) => (
-                    <div key={sensor} className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${active ? 'bg-green-400' : 'bg-red-400'}`} />
-                      <span className="text-gray-300">{sensor.toUpperCase()}</span>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${robot.sensors.radar ? 'bg-green-400' : 'bg-red-400'}`} />
+                    <span className="text-gray-300">RADAR</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${robot.sensors.lidar ? 'bg-green-400' : 'bg-red-400'}`} />
+                    <span className="text-gray-300">LIDAR</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${robot.sensors.magnetic ? 'bg-green-400' : 'bg-red-400'}`} />
+                    <span className="text-gray-300">MAGNETIC</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${robot.sensors.vacuum ? 'bg-green-400' : 'bg-red-400'}`} />
+                    <span className="text-gray-300">VACUUM</span>
+                  </div>
                 </div>
               </div>
 

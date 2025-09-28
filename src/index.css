@@ -2,143 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Premium Black-first Minimalist Design System for AI Swarm Robotics
-Deep space black background, white primary text, electric cyan accent
-Inspired by Fey-style premium design with cinematic space aesthetics
-All colors MUST be HSL for proper theming
-*/
-
 @layer base {
   :root {
-    /* Black-first premium theme - Light mode (for reference) */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-
-    /* Deep space black primary */
-    --primary: 220 100% 2%;  /* Deep space black #000814 */
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 80% 8%;
-    --primary-variant: 220 60% 4%;
-
-    /* Clean secondary - subtle dark grays */
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    /* Electric cyan accent - vivid and minimal use */
-    --accent: 184 100% 50%;  /* Electric cyan #00E6FF */
-    --accent-foreground: 220 100% 2%;
-    --accent-glow: 184 100% 60%;
-    --accent-bright: 184 100% 70%;
-
-    /* Card and surface colors */
-    --card: 0 0% 100%;
-    --card-foreground: 230 35% 7%;
-    --card-border: 220 14% 90%;
-
-    /* Interactive states */
-    --muted: 220 14% 96%;
-    --muted-foreground: 215 16% 47%;
-
-    /* Utility colors */
-    --popover: 0 0% 100%;
-    --popover-foreground: 230 35% 7%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 142 76% 36%;
-
-    /* Futuristic gradients */
-    --gradient-space: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)), hsl(var(--primary-variant)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--accent-bright)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
-    --gradient-neon: linear-gradient(45deg, hsl(var(--accent)) 0%, hsl(var(--accent-bright)) 100%);
-    --gradient-cosmic: radial-gradient(ellipse at center, hsl(var(--primary-glow)) 0%, hsl(var(--primary)) 70%, transparent 100%);
-
-    /* Enhanced shadows and glows for futuristic feel */
-    --shadow-space: 0 25px 50px -12px hsl(var(--primary) / 0.25);
-    --shadow-glow: 0 0 30px hsl(var(--accent) / 0.3), 0 0 60px hsl(var(--accent) / 0.2);
-    --shadow-card: 0 4px 6px -1px hsl(var(--primary) / 0.1), 0 2px 4px -1px hsl(var(--primary) / 0.06);
-    --shadow-neon: 0 0 20px hsl(var(--accent) / 0.4), 0 0 40px hsl(var(--accent) / 0.2), inset 0 1px 0 hsl(var(--accent) / 0.1);
-    --shadow-futuristic: 0 8px 32px hsl(var(--primary) / 0.15), 0 4px 16px hsl(var(--accent) / 0.1);
-
-    /* Enhanced animation variables for futuristic feel */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    --transition-bounce: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --animation-float: float 6s ease-in-out infinite;
-    --animation-pulse-glow: pulse-glow 2s ease-in-out infinite alternate;
-    --animation-orbital: orbital-rotation 30s linear infinite;
-    --animation-particle: particle-drift 15s ease-in-out infinite;
-    --animation-scan: radar-scan 3s ease-in-out infinite;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  /* PRIMARY THEME: Black-first space immersion (this is the main theme) */
-  .dark {
-    --background: 220 100% 2%;  /* Deep space black */
+    /* Black-first space theme */
+    --background: 0 0% 0%;  /* Pure black */
     --foreground: 0 0% 100%;    /* Pure white text */
 
-    --card: 220 80% 4%;         /* Slightly lighter black for cards */
+    --card: 0 0% 5%;         /* Very dark cards */
     --card-foreground: 0 0% 100%;
-    --card-border: 220 50% 10%;
+    --card-border: 184 100% 50%;
 
-    --primary: 0 0% 100%;       /* White as primary in dark theme */
-    --primary-foreground: 220 100% 2%;
-    --primary-glow: 184 100% 50%;
+    --primary: 0 0% 100%;       /* White as primary */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 50% 8%;    /* Dark secondary */
+    --secondary: 0 0% 10%;    /* Dark secondary */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 40% 12%;       /* Muted backgrounds */
+    --muted: 0 0% 15%;       /* Muted backgrounds */
     --muted-foreground: 0 0% 70%;
 
-    --accent: 184 100% 50%;     /* Electric cyan */
-    --accent-foreground: 220 100% 2%;
-    --accent-glow: 184 100% 60%;
+    --accent: 184 100% 50%;     /* Electric cyan #00E6FF */
+    --accent-foreground: 0 0% 0%;
 
-    --popover: 230 30% 9%;
+    --popover: 0 0% 5%;
     --popover-foreground: 0 0% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 230 20% 15%;
-    --input: 230 20% 15%;
-    --ring: 142 76% 50%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 184 100% 50%;
 
-    /* Dark theme gradients */
-    --gradient-space: linear-gradient(135deg, hsl(var(--background)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--secondary)) 100%);
+    --radius: 0.5rem;
 
-    /* Enhanced shadows for dark mode */
-    --shadow-space: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 40px hsl(var(--accent) / 0.4);
-    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -1px hsl(0 0% 0% / 0.2);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 184 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 184 100% 50%;
   }
 }
 
@@ -148,62 +51,27 @@ All colors MUST be HSL for proper theming
   }
 
   body {
-    @apply bg-background text-foreground dark;
+    @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'cv05', 'cv11';
   }
 }
 
-/* Space-themed animations and keyframes */
+/* Space-themed animations */
 @layer utilities {
-  /* Keyframe animations for space effects */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
 
   @keyframes pulse-glow {
-    0% { box-shadow: var(--shadow-glow); }
-    100% { box-shadow: 0 0 40px hsl(var(--accent) / 0.6); }
+    0% { box-shadow: 0 0 20px rgba(0, 230, 255, 0.3); }
+    100% { box-shadow: 0 0 40px rgba(0, 230, 255, 0.6); }
   }
 
   @keyframes rotate-slow {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-  }
-
-  @keyframes fade-in-up {
-    from { 
-      opacity: 0; 
-      transform: translateY(30px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  }
-
-  @keyframes slide-in-right {
-    from { 
-      opacity: 0; 
-      transform: translateX(50px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateX(0); 
-    }
-  }
-
-  @keyframes orbital-rotation {
-    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-  }
-
-  @keyframes particle-drift {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-20px) translateX(10px); }
-    50% { transform: translateY(0px) translateX(-10px); }
-    75% { transform: translateY(20px) translateX(5px); }
   }
 
   @keyframes radar-scan {
@@ -212,165 +80,38 @@ All colors MUST be HSL for proper theming
     100% { transform: rotate(360deg); opacity: 1; }
   }
 
-  @keyframes neon-pulse {
-    0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 
-                  0 0 40px hsl(var(--accent) / 0.2);
-    }
-    50% { 
-      box-shadow: 0 0 30px hsl(var(--accent) / 0.6), 
-                  0 0 60px hsl(var(--accent) / 0.4),
-                  0 0 80px hsl(var(--accent) / 0.2);
-    }
-  }
-
-  @keyframes matrix-slide {
-    from { transform: translateY(-100%) scale(0.8); opacity: 0; }
-    to { transform: translateY(0) scale(1); opacity: 1; }
-  }
-
-  /* Custom utility classes for space theme */
-  .gradient-space {
-    background: var(--gradient-space);
-  }
-
-  .gradient-hero {
-    background: var(--gradient-hero);
-  }
-
-  .gradient-card {
-    background: var(--gradient-card);
-  }
-
-  .shadow-space {
-    box-shadow: var(--shadow-space);
-  }
-
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .shadow-card {
-    box-shadow: var(--shadow-card);
-  }
-
   .animate-float {
-    animation: var(--animation-float);
+    animation: float 6s ease-in-out infinite;
   }
 
   .animate-pulse-glow {
-    animation: var(--animation-pulse-glow);
+    animation: pulse-glow 2s ease-in-out infinite alternate;
   }
 
   .animate-rotate-slow {
     animation: rotate-slow 20s linear infinite;
   }
 
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out;
-  }
-
-  .animate-slide-in-right {
-    animation: slide-in-right 0.6s ease-out;
-  }
-
-  .animate-orbital {
-    animation: var(--animation-orbital);
-  }
-
-  .animate-particle-drift {
-    animation: var(--animation-particle);
-  }
-
-  .animate-neon-pulse {
-    animation: neon-pulse 3s ease-in-out infinite;
-  }
-
-  .animate-matrix-slide {
-    animation: matrix-slide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
   .animate-radar-scan {
     animation: radar-scan 3s ease-in-out infinite;
   }
 
-  /* Smooth transitions using design system */
-  .transition-smooth {
-    transition: var(--transition-smooth);
-  }
-
-  .transition-spring {
-    transition: var(--transition-spring);
-  }
-
-  .transition-bounce {
-    transition: var(--transition-bounce);
-  }
-
-  /* Glass effect for space cards */
   .glass-card {
-    background: hsl(var(--card) / 0.8);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--card-border) / 0.3);
+    border: 1px solid rgba(0, 230, 255, 0.3);
   }
 
-  /* Neon glow effects for accent elements */
   .neon-glow {
-    box-shadow: 0 0 20px hsl(var(--accent) / 0.5), 
-                0 0 40px hsl(var(--accent) / 0.3), 
-                0 0 60px hsl(var(--accent) / 0.1);
+    box-shadow: 0 0 20px rgba(0, 230, 255, 0.5), 
+                0 0 40px rgba(0, 230, 255, 0.3), 
+                0 0 60px rgba(0, 230, 255, 0.1);
   }
 
-  /* Enhanced space particle background */
-  .space-bg {
-    background-image: 
-      radial-gradient(2px 2px at 20px 30px, hsl(var(--accent) / 0.4), transparent),
-      radial-gradient(2px 2px at 40px 70px, hsl(var(--primary-glow) / 0.5), transparent),
-      radial-gradient(1px 1px at 90px 40px, hsl(var(--accent) / 0.3), transparent),
-      radial-gradient(1px 1px at 130px 80px, hsl(var(--accent-bright) / 0.4), transparent),
-      radial-gradient(3px 3px at 160px 20px, hsl(var(--accent) / 0.2), transparent);
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    animation: particle-drift 20s ease-in-out infinite;
+  .transition-smooth {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Futuristic gradient utilities */
-  .gradient-neon {
-    background: var(--gradient-neon);
-  }
-
-  .gradient-cosmic {
-    background: var(--gradient-cosmic);
-  }
-
-  /* Enhanced shadow utilities */
-  .shadow-neon {
-    box-shadow: var(--shadow-neon);
-  }
-
-  .shadow-futuristic {
-    box-shadow: var(--shadow-futuristic);
-  }
-
-  /* Futuristic border effects */
-  .border-neon {
-    border: 2px solid hsl(var(--accent) / 0.6);
-    box-shadow: inset 0 0 10px hsl(var(--accent) / 0.2);
-  }
-
-  /* Holographic effects */
-  .holographic {
-    background: linear-gradient(45deg, 
-      hsl(var(--accent) / 0.1) 0%, 
-      hsl(var(--primary-glow) / 0.1) 25%, 
-      hsl(var(--accent-bright) / 0.1) 50%, 
-      hsl(var(--accent) / 0.1) 75%, 
-      hsl(var(--primary-glow) / 0.1) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--accent) / 0.3);
-  }
-
-  /* Mission Control specific styles */
   .mission-control-grid {
     display: grid;
     grid-template-columns: 320px 1fr 320px;

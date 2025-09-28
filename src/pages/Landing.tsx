@@ -2,39 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Shield, Target, Satellite, Activity, MapPin, Eye, Route } from 'lucide-react';
-import StarfieldBackground from '@/components/StarfieldBackground';
+import { Satellite } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, Float } from '@react-three/drei';
+import { OrbitControls, Sphere, Float, Stars } from '@react-three/drei';
 import anime from 'animejs';
-
-// Define tabs for the Quick Access Section
-const tabs = [
-  {
-    id: 'telemetry',
-    label: 'Robot Telemetry',
-    icon: Activity,
-    route: '/mission-control'
-  },
-  {
-    id: 'tracking',
-    label: 'Debris Tracking',
-    icon: MapPin,
-    route: '/mission-control'
-  },
-  {
-    id: 'monitoring',
-    label: 'Live Monitoring',
-    icon: Eye,
-    route: '/mission-control'
-  },
-  {
-    id: 'planning',
-    label: 'Path Planning',
-    icon: Route,
-    route: '/mission-control'
-  }
-];
 
 // Cinematic 3D Background
 const CinematicSpace = () => {
@@ -44,6 +15,8 @@ const CinematicSpace = () => {
       <pointLight position={[10, 10, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00E6FF" />
       
+      <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade />
+      
       {/* Central Earth */}
       <Float speed={0.5} rotationIntensity={0.2}>
         <Sphere args={[1]} position={[0, 0, 0]}>
@@ -52,8 +25,8 @@ const CinematicSpace = () => {
       </Float>
       
       {/* Orbiting debris */}
-      {Array.from({ length: 20 }).map((_, i) => {
-        const angle = (i / 20) * Math.PI * 2;
+      {Array.from({ length: 30 }).map((_, i) => {
+        const angle = (i / 30) * Math.PI * 2;
         const radius = 2 + Math.random() * 1;
         const x = Math.cos(angle) * radius;
         const z = Math.sin(angle) * radius;
@@ -196,137 +169,6 @@ const Landing = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Quick Access Section */}
-      <section className="py-20 bg-gradient-to-b from-black via-gray-900/50 to-black">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Mission Control <span className="text-cyan-400">Systems</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Access all mission-critical systems and monitoring tools
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            {tabs.map((tab, index) => (
-              <motion.div
-                key={tab.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="cursor-pointer"
-              >
-                <Link to={tab.route}>
-                  <div className="bg-gray-900 border border-gray-700 hover:border-cyan-400/50 rounded-lg p-6 text-center transition-all duration-300 group">
-                    <div className="w-16 h-16 bg-cyan-400/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 transition-colors">
-                      <tab.icon className="h-8 w-8 text-cyan-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                      {tab.label}
-                    </h3>
-                    <div className="flex items-center justify-center text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-sm">Access System</span>
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key Features Preview */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900/30">
-        <div className="container mx-auto px-4">
-          <motion.h3
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent"
-          >
-            Mission-Critical Technology
-          </motion.h3>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Zap className="h-8 w-8" />,
-                title: "AI Swarm Intelligence",
-                description: "Coordinated autonomous robots that work together using advanced AI algorithms",
-                color: "#00E6FF"
-              },
-              {
-                icon: <Shield className="h-8 w-8" />,
-                title: "Debris Detection",
-                description: "Advanced sensors and computer vision to identify and track space debris",
-                color: "#FFB86B"
-              },
-              {
-                icon: <Target className="h-8 w-8" />,
-                title: "Precision Cleanup",
-                description: "Safe and efficient collection of space junk without creating more debris",
-                color: "#90EE90"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                viewport={{ once: true }}
-                className="bg-gray-900 border border-gray-700 hover:border-cyan-400/50 p-8 rounded-2xl transition-all duration-300 group"
-              >
-                <div className="mb-4 group-hover:scale-110 transition-transform" style={{ color: feature.color }}>
-                  {feature.icon}
-                </div>
-                <h4 className="text-xl font-semibold mb-4 text-white group-hover:text-cyan-400 transition-colors">{feature.title}</h4>
-                <p className="text-gray-300">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
-          >
-            <h3 className="text-4xl font-bold mb-6 text-white">
-              Ready to Explore the Future?
-            </h3>
-            <p className="text-xl mb-8 text-gray-300">
-              Enter the mission control center and experience how 
-              AI swarm robotics will revolutionize space cleanup.
-            </p>
-            <Link to="/mission-control">
-              <Button 
-                size="lg" 
-                className="bg-cyan-400 text-black hover:bg-cyan-500 font-bold px-8 py-4 text-lg group shadow-lg hover:shadow-cyan-400/50 transition-all"
-              >
-                Enter Mission Control
-                <Satellite className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-              </Button>
-            </Link>
-          </motion.div>
         </div>
       </section>
     </div>
