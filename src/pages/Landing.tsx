@@ -2,11 +2,39 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Zap, Shield, Target, Satellite } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Target, Satellite, Activity, MapPin, Eye, Route } from 'lucide-react';
 import StarfieldBackground from '@/components/StarfieldBackground';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Float } from '@react-three/drei';
 import anime from 'animejs';
+
+// Define tabs for the Quick Access Section
+const tabs = [
+  {
+    id: 'telemetry',
+    label: 'Robot Telemetry',
+    icon: Activity,
+    route: '/mission-control'
+  },
+  {
+    id: 'tracking',
+    label: 'Debris Tracking',
+    icon: MapPin,
+    route: '/mission-control'
+  },
+  {
+    id: 'monitoring',
+    label: 'Live Monitoring',
+    icon: Eye,
+    route: '/mission-control'
+  },
+  {
+    id: 'planning',
+    label: 'Path Planning',
+    icon: Route,
+    route: '/mission-control'
+  }
+];
 
 // Cinematic 3D Background
 const CinematicSpace = () => {
@@ -198,20 +226,21 @@ const Landing = () => {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
                 className="cursor-pointer"
-                onClick={() => setActiveTab(tab.id as any)}
               >
-                <div className="bg-gray-900 border border-gray-700 hover:border-cyan-400/50 rounded-lg p-6 text-center transition-all duration-300 group">
-                  <div className="w-16 h-16 bg-cyan-400/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 transition-colors">
-                    <tab.icon className="h-8 w-8 text-cyan-400" />
+                <Link to={tab.route}>
+                  <div className="bg-gray-900 border border-gray-700 hover:border-cyan-400/50 rounded-lg p-6 text-center transition-all duration-300 group">
+                    <div className="w-16 h-16 bg-cyan-400/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/20 transition-colors">
+                      <tab.icon className="h-8 w-8 text-cyan-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                      {tab.label}
+                    </h3>
+                    <div className="flex items-center justify-center text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-sm">Access System</span>
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                    {tab.label}
-                  </h3>
-                  <div className="flex items-center justify-center text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-sm">Access System</span>
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
