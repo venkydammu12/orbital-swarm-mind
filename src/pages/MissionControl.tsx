@@ -2,27 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box, Html, Line, Float, Stars, Ring } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Mic, 
-  MicOff, 
-  Camera, 
-  CameraOff, 
-  Play, 
-  Pause, 
-  RotateCcw,
-  Activity,
-  Battery,
-  Radar,
-  Target,
-  MapPin,
-  Zap,
-  Shield,
-  Settings,
-  Volume2,
-  Eye,
-  Navigation,
-  AlertTriangle
-} from 'lucide-react';
+import { Mic, MicOff, Camera, CameraOff, Play, Pause, RotateCcw, Activity, Battery, Radar, Target, MapPin, Zap, Shield, Settings, Volume2, Eye, Navigation, TriangleAlert as AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
