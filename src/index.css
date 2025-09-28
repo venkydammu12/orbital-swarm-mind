@@ -57,7 +57,7 @@
   }
 }
 
-/* Space-themed animations */
+/* Space-themed animations and effects */
 @layer utilities {
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -80,6 +80,24 @@
     100% { transform: rotate(360deg); opacity: 1; }
   }
 
+  @keyframes water-torch {
+    0%, 100% { 
+      background: radial-gradient(circle at 50% 50%, rgba(0, 230, 255, 0.1) 0%, transparent 50%);
+    }
+    50% { 
+      background: radial-gradient(circle at 50% 50%, rgba(0, 230, 255, 0.3) 0%, transparent 70%);
+    }
+  }
+
+  @keyframes mission-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(0, 230, 255, 0.5), inset 0 0 20px rgba(0, 230, 255, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(0, 230, 255, 0.8), inset 0 0 30px rgba(0, 230, 255, 0.2);
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -94,6 +112,14 @@
 
   .animate-radar-scan {
     animation: radar-scan 3s ease-in-out infinite;
+  }
+
+  .animate-water-torch {
+    animation: water-torch 4s ease-in-out infinite;
+  }
+
+  .animate-mission-pulse {
+    animation: mission-pulse 3s ease-in-out infinite;
   }
 
   .glass-card {
@@ -127,4 +153,79 @@
     0%, 100% { transform: translateX(-100%); }
     50% { transform: translateX(100%); }
   }
+
+  /* Water torch light effect */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+
+  /* Mission control specific styles */
+  .border-3 {
+    border-width: 3px;
+  }
+
+  /* Cinematic text effects */
+  .text-glow {
+    text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+
+  /* Robot status indicators */
+  .status-active {
+    background: linear-gradient(45deg, #00E6FF, #00B4D8);
+    box-shadow: 0 0 20px rgba(0, 230, 255, 0.5);
+  }
+
+  .status-collecting {
+    background: linear-gradient(45deg, #FFB86B, #FF8C42);
+    box-shadow: 0 0 20px rgba(255, 184, 107, 0.5);
+  }
+
+  .status-returning {
+    background: linear-gradient(45deg, #90EE90, #32CD32);
+    box-shadow: 0 0 20px rgba(144, 238, 144, 0.5);
+  }
+
+  /* Path visualization */
+  .path-shortest {
+    stroke: #00E6FF;
+    stroke-width: 3;
+    stroke-dasharray: 10, 5;
+    filter: drop-shadow(0 0 10px #00E6FF);
+  }
+
+  .path-safest {
+    stroke: #FFB86B;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 10px #FFB86B);
+  }
+
+  /* Voice recognition styles */
+  .voice-listening {
+    animation: mission-pulse 1s ease-in-out infinite;
+    border: 3px solid #FF4444;
+  }
+
+  /* Camera feed styles */
+  .robot-eyes-active {
+    border: 2px solid #FF4444;
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+  }
+}
+
+/* Custom scrollbar for mission control panels */
+.mission-control-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mission-control-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mission-control-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 230, 255, 0.5);
+  border-radius: 3px;
+}
+
+.mission-control-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 230, 255, 0.8);
 }

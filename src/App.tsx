@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 // Main Pages
 import Landing from "./pages/Landing";
 import MissionControl from "./pages/MissionControl";
+import SolutionLoop from "./components/SolutionLoop";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/mission-control" element={<MissionControl />} />
+            <Route path="/solution-loop" element={<div className="pt-20"><SolutionLoop /></div>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
